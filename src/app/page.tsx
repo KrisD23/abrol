@@ -13,6 +13,15 @@ import SimpleTestimonials from "@/components/SimpleTestimonials";
 import GlassSurface from "@/components/GlassSurface";
 import MultiLineTypingAnimation from "@/components/MultiLineTypingAnimation";
 
+// Import new homepage components
+import {
+  NewHeroSection,
+  WhatMakesUsDifferent,
+  ServicesOverview,
+  ConnectorElement,
+  AboutSection,
+} from "@/components/homepage";
+
 // Simple typing text for the hero
 const homeTypingTexts: Array<[string, string]> = [
   ["WHERE PRECISION", "MEETS PROSPERITY"],
@@ -370,6 +379,14 @@ export default function Home() {
         </motion.div>
       )}
 
+      {/* New Hero Section with your content */}
+      {introStep >= 4 && <NewHeroSection />}
+
+      {/* New Homepage Sections */}
+      <WhatMakesUsDifferent />
+      <ServicesOverview />
+      <ConnectorElement />
+      <AboutSection />
       {/* Testimonials and Impact */}
       <SimpleTestimonials />
 

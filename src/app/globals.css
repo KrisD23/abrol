@@ -198,6 +198,43 @@
     color: #ffffff !important;
   }
 
+  /* Homepage component overrides */
+  .homepage-section {
+    background: #000000 !important;
+  }
+
+  .homepage-section * {
+    color: #ffffff !important;
+  }
+
+  .homepage-section .text-gray-300 {
+    color: #d1d5db !important;
+  }
+
+  .homepage-section .text-gray-400 {
+    color: #9ca3af !important;
+  }
+
+  .homepage-section .text-blue-400 {
+    color: #60a5fa !important;
+  }
+
+  .homepage-section .bg-black {
+    background-color: #000000 !important;
+  }
+
+  .homepage-section .bg-gray-900 {
+    background-color: #111827 !important;
+  }
+
+  .homepage-section .bg-gray-800 {
+    background-color: #1f2937 !important;
+  }
+
+  .homepage-section .border-gray-700 {
+    border-color: #374151 !important;
+  }
+
   /* Service card buttons - override with black text */
   .expandable-service-card button {
     color: #000000 !important;
