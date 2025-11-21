@@ -1,0 +1,523 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+/* Trada Sans Font Faces */
+@font-face {
+  font-family: "Trada Sans Bold";
+  src: url("/fonts/trada-sans-bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trada Sans Light";
+  src: url("/fonts/trada-sans-light.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@import "tailwindcss";
+
+/* Mobile Responsive Base Styles */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Ensure proper spacing on mobile */
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Mobile text scaling */
+  .mobile-text-scale {
+    font-size: 0.9rem;
+  }
+
+  /* Hide on mobile utility */
+  .hidden-mobile {
+    display: none !important;
+  }
+
+  /* Show on mobile utility */
+  .show-mobile {
+    display: block !important;
+  }
+}
+
+/* Desktop only utilities */
+@media (min-width: 769px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+
+  .show-desktop {
+    display: block !important;
+  }
+}
+
+/* Custom utilities for blog carousel */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@theme inline {
+  --animate-aurora: aurora 60s linear infinite;
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Black Theme */
+  /* Main site background - black */
+  --background: #000000; /* Black background */
+  --foreground: #ffffff; /* White for text */
+
+  /* Cards and panels - dark gray */
+  --card: #1a1a1a; /* Dark gray card */
+  --card-foreground: #ffffff; /* White text on cards */
+
+  /* Popovers and modals */
+  --popover: #1a1a1a; /* Dark gray */
+  --popover-foreground: #ffffff; /* White text */
+
+  /* Primary elements - dark gray for buttons, links, emphasis */
+  --primary: #1a1a1a; /* Dark gray */
+  --primary-foreground: #ffffff; /* White on primary */
+
+  /* Secondary elements - darker gray for subtle backgrounds */
+  --secondary: #0f0f0f; /* Darker gray */
+  --secondary-foreground: #ffffff; /* White on secondary */
+
+  /* Muted elements - darker gray for less important content */
+  --muted: #0f0f0f; /* Darker gray */
+  --muted-foreground: #ffffff; /* White text on muted */
+
+  /* Accent elements - dark gray for highlights */
+  --accent: #1a1a1a; /* Dark gray accent */
+  --accent-foreground: #ffffff; /* White on accent */
+
+  /* Destructive elements */
+  --destructive: #dc2626; /* Red for destructive actions */
+  --destructive-foreground: #ffffff; /* White on destructive */
+
+  /* Borders - subtle gray */
+  --border: #333333; /* Gray border */
+
+  /* Form inputs - dark gray */
+  --input: #1a1a1a; /* Dark gray input */
+
+  /* Focus rings - white for accessibility */
+  --ring: #ffffff; /* White focus ring */
+
+  /* Chart colors - gray variations */
+  --chart-1: #1a1a1a; /* Dark gray */
+  --chart-2: #333333; /* Medium gray */
+  --chart-3: #4d4d4d; /* Lighter gray */
+  --chart-4: #666666; /* Even lighter gray */
+  --chart-5: #808080; /* Light gray */
+
+  /* Sidebar elements */
+  --sidebar: #000000; /* Black sidebar */
+  --sidebar-foreground: #ffffff; /* White sidebar text */
+  --sidebar-primary: #1a1a1a; /* Dark gray sidebar primary */
+  --sidebar-primary-foreground: #ffffff; /* White on primary */
+  --sidebar-accent: #1a1a1a; /* Dark gray sidebar accent */
+  --sidebar-accent-foreground: #ffffff; /* White on accent */
+  --sidebar-border: #333333; /* Gray border */
+  --sidebar-ring: #ffffff; /* White focus ring */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-libertinus-serif), serif;
+  }
+
+  /* Ensure all text is white by default */
+  *,
+  *::before,
+  *::after {
+    color: #ffffff;
+  }
+
+  /* Heading styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .heading {
+    font-family: var(--font-dm-serif-display), serif;
+    color: #ffffff !important;
+  }
+
+  /* Body text styles */
+  p,
+  span,
+  div,
+  input,
+  textarea,
+  select,
+  a,
+  nav,
+  .body-text {
+    font-family: var(--font-libertinus-serif), serif;
+    color: #ffffff !important;
+  }
+
+  /* Default button text color (removed button from above to override) */
+  button {
+    font-family: var(--font-libertinus-serif), serif;
+    color: #ffffff !important;
+  }
+
+  /* Service card buttons - override with black text */
+  .expandable-service-card button {
+    color: #000000 !important;
+  }
+  
+  /* Service card buttons hover state - white text */
+  .expandable-service-card button:hover {
+    color: #ffffff !important;
+  }
+
+  /* Glassmorphism base styles */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1),
+      0 2px 16px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-effect:hover {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(1.8) brightness(1.05);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8) brightness(1.05);
+    transform: translateY(-1px) scale(1.02);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.15),
+      0 4px 24px 0 rgba(0, 0, 0, 0.08), inset 0 2px 0 0 rgba(255, 255, 255, 0.5),
+      inset 0 -2px 0 0 rgba(255, 255, 255, 0.2),
+      0 0 30px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Remove any color inheritance that might cause beige appearance */
+  .glass-surface {
+    background-color: transparent !important;
+  }
+
+  /* Ensure buttons don't inherit theme colors */
+  button.glass-surface,
+  .glass-surface button,
+  a.glass-surface,
+  .glass-surface a {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  button.glass-surface:hover,
+  .glass-surface button:hover,
+  a.glass-surface:hover,
+  .glass-surface a:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+
+  /* Navbar specific styles */
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover {
+    transform: scale(1.05);
+    font-weight: 600;
+  }
+
+  /* Smooth underline animation */
+  .nav-link span:last-child {
+    background: linear-gradient(90deg, #000000, #333333);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  /* Completely remove any visual containers */
+  .nav-link,
+  .nav-link *,
+  .nav-link span {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .nav-link:hover,
+  .nav-link:hover *,
+  .nav-link:hover span {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+/* Pause animation on hover */
+/* .animate-marquee:hover {
+  animation-play-state: paused;
+} */
+
+/* Font utility classes */
+.font-heading {
+  font-family: var(--font-dm-serif-display), serif;
+}
+
+.font-body {
+  font-family: var(--font-libertinus-serif), serif;
+}
+
+.font-dm-sans {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+}
+
+/* Force black text classes with high specificity */
+.force-black-text,
+.force-black-text *,
+.force-black-text span,
+.force-black-text div {
+  color: #000000 !important;
+  font-weight: bold !important;
+}
+
+.carousel-active-text,
+.carousel-active-text *,
+.carousel-active-text span,
+.carousel-active-text div {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+/* ABN button specific overrides */
+.abn-button-text,
+.abn-button-text *,
+.abn-button-text span,
+.abn-button-text div,
+.abn-button-text svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  fill: none !important;
+}
+
+/* Hero text specific styling */
+.hero-title {
+  font-family: var(--font-dm-serif-display), serif;
+  font-weight: 400;
+}
+
+.abril-fatface {
+  font-family: var(--font-abril-fatface) !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+}
+
+.bungee-regular {
+  font-family: var(--font-bungee) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+.orbitron-regular {
+  font-family: var(--font-orbitron) !important;
+  font-optical-sizing: auto !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+.orbitron-medium {
+  font-family: var(--font-orbitron) !important;
+  font-optical-sizing: auto !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+}
+
+.orbitron-bold {
+  font-family: var(--font-orbitron) !important;
+  font-optical-sizing: auto !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+
+/* Notice Scroller Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/* Testimonials Scroller Animation */
+@keyframes testimonial-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-testimonial-scroll {
+  animation: testimonial-scroll 20s linear infinite;
+}
+
+.animate-testimonial-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Font Classes */
+.font-dm-sans {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.font-bebas-neue {
+  font-family: "Bebas Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+.font-trada-bold {
+  font-family: "Trada Sans Bold", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+.font-trada-light {
+  font-family: "Trada Sans Light", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+/* Apply DM Sans to all paragraph text by default */
+p {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+/* Apply DM Sans to input elements for consistency */
+input,
+textarea,
+select {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+/* Apply DM Sans to span elements that contain text */
+span.text-sm,
+span.text-xs,
+span.text-lg {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+/* Hide Scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* okk plus the theme will be  navy blue and beige */
