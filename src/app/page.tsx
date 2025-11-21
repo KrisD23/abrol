@@ -1,32 +1,18 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CalendlyModal from "@/components/CalendlyModal";
-// import ScrollStack from "@/components/ScrollStack";
-// import StatsCounter from "@/components/StatsCounter";
+
 import NoticeScroller from "@/components/NoticeScroller";
 import SimpleTestimonials from "@/components/SimpleTestimonials";
-// import BadgesSection from "@/components/BadgesSection";
+
 import GlassSurface from "@/components/GlassSurface";
 import MultiLineTypingAnimation from "@/components/MultiLineTypingAnimation";
-// import AnimatedIntroText from "@/components/AnimatedIntroText";
-// import CenterTypingAnimation from "@/components/CenterTypingAnimation";
+
 import BlurText from "@/components/BlurText";
-// import { Globe } from "@/components/Globe";
-// import { Calendar, Phone } from "lucide-react";
-import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
-import { FiSend, FiX } from "react-icons/fi";
-import { loop } from "@react-three/fiber/dist/declarations/src/core/loop";
 
 // Typing animation texts for home page (three-line structure)
 const homeTypingTexts: Array<[string, string]> = [
@@ -56,75 +42,14 @@ const sectionTexts = {
   ],
 };
 
-// Scroll Stack Cards Data
-// const scrollStackCards = [
-//   {
-//     id: 1,
-//     title: "ASSET",
-//     subtitle: "PROTECTION",
-//     description:
-//       "We create tailored structures—trusts, companies, partnerships—that legally protect your assets from business risks, creditors, lawsuits, and family disputes.",
-//     image: "/asset-protection.jpg",
-//     imageAlt: "Asset Protection",
-//   },
-//   {
-//     id: 2,
-//     title: "BUSINESS",
-//     subtitle: "STRUCTURING",
-//     description:
-//       "From startups to seasoned enterprises, we design legal structures that protect personal assets while optimizing tax efficiency and operational control.",
-//     image: "/img2.jpg",
-//     imageAlt: "Business Structuring",
-//   },
-//   {
-//     id: 3,
-//     title: "WEALTH &",
-//     subtitle: "ESTATE PLANNING",
-//     description:
-//       "Your legacy should be preserved—not lost in taxes or legal battles. We help you plan generational transfers that are tax-efficient and aligned with your wishes.",
-//     image: "/coin.jpg",
-//     imageAlt: "Wealth & Estate Planning",
-//   },
-//   {
-//     id: 4,
-//     title: "TAX &",
-//     subtitle: "COMPLIANCE",
-//     description:
-//       "Through our affiliated accounting firm, we offer support to ensure your structures comply with ATO, ASIC, and state regulations—without sacrificing performance.",
-//     image: "/taxandCompliance.jpg",
-//     imageAlt: "Tax & Compliance",
-//   },
-// ];
-
 export default function Home() {
-  // Define background images for different sections (images/videos only)
   const backgroundImagesSets = {
     home: [
-      // {
-      //   src: "/home.jpg",
-      //   mirrored: false,
-      //   isVideo: false,
-      // },
-      // {
-      //   src: "/new_money.jpeg",
-      //   mirrored: false,
-      //   isVideo: false,
-      // },
-      // {
-      //   src: "/bg3.jpg",
-      //   mirrored: false,
-      //   isVideo: false,
-      // },
       {
         src: "/railway.jpg",
         mirrored: false,
         isVideo: false,
       },
-      // {
-      //   src: "/background_video1.mp4",
-      //   mirrored: false,
-      //   isVideo: true,
-      // },
     ],
 
     blog: [
@@ -138,7 +63,6 @@ export default function Home() {
 
   const [currentSection, setCurrentSection] =
     useState<keyof typeof contentSections>("home");
-  const [isAnimating, setIsAnimating] = useState(false);
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const [actualVisibleBgIndex, setActualVisibleBgIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -149,7 +73,6 @@ export default function Home() {
     liveClassName?: string;
   } | null>(null);
 
-  const [isMobileSocialOpen, setIsMobileSocialOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isTextTransitioning, setIsTextTransitioning] = useState(false);
@@ -164,14 +87,6 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileNavState, setMobileNavState] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { scrollYProgress } = useScroll();
-  // Modal visibility hooks (must be top-level)
-  const modalOpacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1]);
-  const modalDisplay = useTransform(
-    scrollYProgress,
-    [0.4, 0.5],
-    ["none", "block"]
-  );
 
   // Get current background images based on section
   const currentBackgroundImages =
@@ -189,10 +104,6 @@ export default function Home() {
   const videos = currentBackgroundImages
     .filter((item) => item.isVideo)
     .map((item) => item.src);
-
-  // Transform scroll progress to opacity for social media panel
-  const socialOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const socialY = useTransform(scrollYProgress, [0, 0.3], [0, 50]);
 
   // Transform scroll progress for content animations
   const contentOpacity = scrollProgress < 0.15 ? 1 - scrollProgress / 0.15 : 0;
@@ -265,57 +176,11 @@ export default function Home() {
   // Background slideshow effect
   useEffect(() => {
     if (currentBackgroundImages.length <= 1) return;
-
-    // Comment out slideshow for video background
-    /*
-    const slideInterval = setInterval(() => {
-      setIsTextTransitioning(true);
-
-      setTimeout(() => {
-        setCurrentTextIndex((prev) => (prev + 1) % currentTexts.length);
-      }, 200);
-
-      // --- Start of Progress Bar Reset Logic ---
-      setIsResetting(true); // Trigger the reset animation
-      setTimeout(() => {
-        setIsResetting(false); // End reset and start filling again
-        setCurrentBgIndex((prev) => {
-          const newIndex = (prev + 1) % currentBackgroundImages.length;
-          if (!isTransitioning) {
-            setActualVisibleBgIndex(newIndex);
-          }
-          return newIndex;
-        });
-      }, 500); // This delay (500ms) is the duration of the reset animation
-      // --- End of Progress Bar Reset Logic ---
-
-      setTimeout(() => {
-        setIsTextTransitioning(false);
-      }, 600);
-    }, 1300); // Change every 4.5 seconds
-
-    return () => clearInterval(slideInterval);
-    */
   }, [currentBackgroundImages, currentTexts, isTransitioning]);
 
   // Progress bar animation effect
   useEffect(() => {
     if (currentBackgroundImages.length <= 1 || isResetting) return; // Pause filling during reset
-
-    // Comment out progress bar for video background
-    /*
-    setProgressWidth(0); // Start from 0 for the new slide
-
-    const progressInterval = setInterval(() => {
-      setProgressWidth((prev) => {
-        const increment = 100 / (4000 / 16); // Fill over 4s (4.5s total - 0.5s reset)
-        const newProgress = prev + increment;
-        return newProgress >= 100 ? 100 : newProgress;
-      });
-    }, 16);
-
-    return () => clearInterval(progressInterval);
-    */
   }, [currentBgIndex, isResetting, currentBackgroundImages.length]); // Re-run when reset ends
 
   // Video lifecycle effect for calculators and home sections
@@ -427,51 +292,6 @@ export default function Home() {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [scrollProgress]);
 
-  // Function to handle section changes
-  const changeSection = (section: string) => {
-    const validSection = section as keyof typeof contentSections;
-    if (
-      validSection in contentSections &&
-      validSection !== currentSection &&
-      !isAnimating
-    ) {
-      // Capture current image from the CURRENT section before it changes
-      const previousSectionImages =
-        backgroundImagesSets[
-          currentSection as keyof typeof backgroundImagesSets
-        ] || backgroundImagesSets.home;
-      const currentImage = previousSectionImages[actualVisibleBgIndex];
-
-      // Capture the exact state including the className used in live rendering
-      const capturedImage = {
-        src: currentImage.src,
-        mirrored: currentImage.mirrored,
-        isVideo: currentImage.isVideo,
-        // Capture the exact className that was being used in the live rendering
-        liveClassName: currentImage.isVideo
-          ? `absolute inset-0 w-full h-full object-cover` // Videos don't have mirroring in live rendering
-          : `absolute inset-0 bg-cover bg-center bg-no-repeat ${
-              currentImage.mirrored ? "" : "scale-x-[-1]"
-            }`, // Images do have mirroring
-      };
-
-      setPreviousImage(capturedImage);
-      setIsTransitioning(true);
-
-      // Reset video states when changing sections
-      setCurrentVideo(0);
-      setShowVideo(true);
-
-      setIsAnimating(true);
-      setCurrentSection(validSection);
-
-      // Scroll to top (hero section) with smooth animation
-      window.scrollTo({ top: 0, behavior: "smooth" });
-
-      setTimeout(() => setIsAnimating(false), 2500); // Duration of the animation
-    }
-  };
-
   const currentContent = contentSections[currentSection];
 
   return (
@@ -571,33 +391,6 @@ export default function Home() {
                   className="object-contain"
                 />
               </motion.div>
-
-              {/* <motion.div
-                className="flex items-center gap-1 overflow-hidden cursor-pointer"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{
-                  opacity: introStep >= 2 ? 1 : 0,
-                  x: introStep >= 2 ? 0 : 100,
-                }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                onClick={() => (window.location.href = "/")}
-              >
-                <span
-                  className={`${
-                    isMobile ? "text-4xl" : "text-5xl"
-                  } font-trada-bold text-white`}
-                >
-                  Abrol
-                </span>
-                <span className={`inline-block ${isMobile ? "w-1" : "w-2"}`}></span>
-                <span
-                  className={`${
-                    isMobile ? "text-4xl" : "text-5xl"
-                  } font-trada-light text-white`}
-                >
-                  Associates
-                </span>
-              </motion.div> */}
             </motion.div>
           </motion.div>
         )}
@@ -723,7 +516,6 @@ export default function Home() {
         <div className="transform scale-x-[-1] w-full h-full relative z-10">
           {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-black/30"></div>
-
           {/* "How you grow matters" text - shows by default on mobile, fades out on scroll on desktop */}
           {currentSection === "home" &&
             ((introStep >= 4 && !isMobile) ||
@@ -750,7 +542,6 @@ export default function Home() {
                 </div>
               </motion.div>
             )}
-
           {/* Navigation Menu - fades in on scroll (desktop) or mobile toggle */}
           {currentSection === "home" &&
             ((introStep >= 4 && !isMobile) || (isMobile && mobileNavState)) && (
@@ -764,60 +555,6 @@ export default function Home() {
                 }}
               >
                 <div className="flex flex-col space-y-8 text-left justify-center min-h-[50vh]">
-                  {/* <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isMobile && mobileNavState ? 1 : navOpacity, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0 }}
-                  className="group relative z-50 inline-block"
-                >
-                  <Link
-                    href="/about"
-                    className="relative inline-block text-2xl md:text-2xl lg:text-3xl text-white leading-tight transition-all duration-300 group-hover:text-white/90 pr-12 font-bebas-neue whitespace-nowrap"
-                  >
-                    About Us
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-3/4"></span>
-                    <span className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
-                      →
-                    </span>
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isMobile && mobileNavState ? 1 : navOpacity, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  className="group relative z-50 inline-block"
-                >
-                  <Link
-                    href="/services"
-                    className="relative inline-block text-2xl md:text-2xl lg:text-3xl text-white leading-tight transition-all duration-300 group-hover:text-white/90 pr-10 font-bebas-neue whitespace-nowrap"
-                  >
-                    Services
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-3/4"></span>
-                    <span className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
-                      →
-                    </span>
-                  </Link>
-                </motion.div> */}
-
-                  {/* <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: navOpacity, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                  className="group relative z-50 inline-block"
-                >
-                  <Link
-                    href="/blog"
-                    className="relative inline-block text-2xl md:text-2xl lg:text-3xl text-white leading-tight transition-all duration-300 group-hover:text-white/90 pr-10 font-bebas-neue whitespace-nowrap"
-                  >
-                    Blog
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-3/4"></span>
-                    <span className="absolute top-1/2 left-full ml-1 transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
-                      →
-                    </span>
-                  </Link>
-                </motion.div> */}
-
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
@@ -862,7 +599,6 @@ export default function Home() {
                 </div>
               </motion.div>
             )}
-
           {/* How you grow matters bottom right of screen when nav is open */}
           {currentSection === "home" &&
             ((introStep >= 4 && navOpacity > 0 && !isMobile) ||
@@ -878,15 +614,7 @@ export default function Home() {
                 </p>
               </div>
             )}
-          {/* {currentSection === "home" && (
-            <div className="absolute inset-0 flex items-center justify-center z-4">
-              <div className="w-full max-w-md mx-auto">
-                <Globe className="w-full" />
-              </div>
-            </div>
-          )} */}
-
-          {/* Main Content */}
+          /{/* Main Content */}
           <div className="relative z-10 flex flex-col min-h-screen px-4 md:px-12 pb-8 pt-20 md:pt-32 md:justify-end justify-end">
             {/* Main Content Container - Main Layout */}
             <div className="flex justify-start w-full items-center md:items-end mb-20 md:mb-0">
@@ -1023,280 +751,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Desktop Social Media Button */}
-            {currentSection === "home" && !isMobileSocialOpen && (
-              <motion.div
-                className="fixed bottom-26 right-8 z-40 hidden md:block"
-                style={{
-                  opacity: socialOpacity,
-                  y: socialY,
-                }}
-              >
-                {/* <GlassSurface
-                  onClick={() => setIsMobileSocialOpen(true)}
-                  className="w-14 h-14 flex items-center justify-center cursor-pointer"
-                  borderRadius={50}
-                  blur={16}
-                  backgroundOpacity={0.25}
-                  hoverable={true}
-                  textColor="text-white"
-                >
-                  <FaInstagram className="w-6 h-6" />
-                </GlassSurface> */}
-              </motion.div>
-            )}
-
-            {/* Desktop Social Media Panel */}
-            {currentSection === "home" && isMobileSocialOpen && (
-              <motion.div
-                className="fixed bottom-26 right-8 w-80 z-40 hidden md:block"
-                style={{
-                  opacity: socialOpacity,
-                  y: socialY,
-                }}
-              >
-                <div className="bg-white/50 backdrop-blur-md rounded-2xl p-6 w-80 border border-border/30 shadow-lg relative">
-                  {/* Close Button */}
-                  <button
-                    onClick={() => setIsMobileSocialOpen(false)}
-                    className="absolute top-4 right-4 w-8 h-8 backdrop-blur-xl bg-background/40 rounded-full flex items-center justify-center hover:bg-background/60 transition-all duration-200 border border-border/30 shadow-lg ring-1 ring-inset ring-white/10"
-                  >
-                    <FiX className="w-4 h-4 text-black" />
-                  </button>
-
-                  <div className="mb-6">
-                    <p className="text-sm text-black mb-4 font-medium font-dm-sans">
-                      Social media
-                    </p>
-                    <div className="flex space-x-3">
-                      {/* Instagram */}
-                      <a
-                        href="https://www.instagram.com/abrolassociates/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary/30 transition-colors text-black"
-                      >
-                        <FaInstagram className="w-5 h-5" />
-                      </a>
-
-                      {/* Facebook */}
-                      <a
-                        href="#"
-                        className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary/30 transition-colors text-black"
-                      >
-                        <FaFacebookF className="w-5 h-5" />
-                      </a>
-
-                      {/* WhatsApp */}
-                      <a
-                        href="#"
-                        className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary/30 transition-colors text-black"
-                      >
-                        <FaWhatsapp className="w-5 h-5" />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Email Input */}
-                  <div>
-                    <p className="text-xs text-black mb-2 font-medium font-dm-sans">
-                      Write your email
-                    </p>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        className="w-full backdrop-blur-xl bg-background/40 border border-border/30 rounded-full px-4 py-3 pr-12 text-black placeholder-black/70 focus:outline-none focus:border-border/50 focus:bg-background/60 transition-all duration-200 text-sm shadow-lg ring-1 ring-inset ring-white/10"
-                      />
-                      <button className="absolute right-2 top-1/2 transform translate-y-[-40%] w-8 h-8 backdrop-blur-xl bg-primary/80 rounded-full flex items-center justify-center hover:bg-primary/90 transition-all duration-200 border border-border/30 shadow-lg ring-1 ring-inset ring-white/10">
-                        <FiSend className="w-4 h-4 text-black" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Mobile Social Media Button - Bottom Left */}
-            {currentSection === "home" && (
-              <motion.div className="md:hidden">
-                {/* Mobile Social Media Toggle Button */}
-                {!isMobileSocialOpen && (
-                  <motion.div
-                    className="fixed bottom-6 left-6 z-40"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {/* <GlassSurface
-                      onClick={() => setIsMobileSocialOpen(true)}
-                      className="w-14 h-14 flex items-center justify-center cursor-pointer"
-                      borderRadius={50}
-                      blur={16}
-                      backgroundOpacity={0.25}
-                      hoverable={true}
-                    >
-                      <FaInstagram className="w-6 h-6" />
-                    </GlassSurface> */}
-                  </motion.div>
-                )}
-
-                {/* Mobile Social Media Panel */}
-                <AnimatePresence>
-                  {isMobileSocialOpen && (
-                    <motion.div
-                      className="fixed inset-0 z-50 backdrop-blur-2xl bg-background/60"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onClick={() => setIsMobileSocialOpen(false)}
-                    >
-                      <motion.div
-                        className="fixed bottom-6 left-6 w-80 max-w-[calc(100vw-3rem)]"
-                        initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                        transition={{ duration: 0.3 }}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <div className="backdrop-blur-xl bg-background/80 rounded-2xl p-6 w-80 max-w-[calc(100vw-3rem)] border border-border/30 shadow-lg ring-1 ring-inset ring-white/10">
-                          {/* Close Button */}
-                          <button
-                            onClick={() => setIsMobileSocialOpen(false)}
-                            className="absolute top-4 right-4 w-8 h-8 backdrop-blur-xl bg-background/40 rounded-full flex items-center justify-center hover:bg-background/60 transition-all duration-200 border border-border/30 shadow-lg ring-1 ring-inset ring-white/10"
-                          >
-                            <FiX className="w-4 h-4 text-black" />
-                          </button>
-
-                          <div className="mb-6">
-                            <p className="text-sm text-black mb-4 font-medium font-dm-sans">
-                              Social media
-                            </p>
-                            <div className="flex space-x-3 flex-wrap gap-y-3">
-                              {/* Instagram */}
-                              <a
-                                href="https://www.instagram.com/abrolassociates/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 backdrop-blur-xl bg-background/40 rounded-full flex items-center justify-center hover:bg-background/60 transition-all duration-200 text-black border border-border/30 shadow-lg ring-1 ring-inset ring-white/10"
-                              >
-                                <FaInstagram className="w-5 h-5" />
-                              </a>
-
-                              {/* Facebook */}
-                              <a
-                                href="#"
-                                className="w-10 h-10 backdrop-blur-xl bg-background/40 rounded-full flex items-center justify-center hover:bg-background/60 transition-all duration-200 text-black border border-border/30 shadow-lg ring-1 ring-inset ring-white/10"
-                              >
-                                <FaFacebookF className="w-5 h-5" />
-                              </a>
-
-                              {/* WhatsApp */}
-                              <a
-                                href="#"
-                                className="w-10 h-10 backdrop-blur-xl bg-background/40 rounded-full flex items-center justify-center hover:bg-background/60 transition-all duration-200 text-black border border-border/30 shadow-lg ring-1 ring-inset ring-white/10"
-                              >
-                                <FaWhatsapp className="w-5 h-5" />
-                              </a>
-                            </div>
-                          </div>
-
-                          {/* Email Input */}
-                          <div>
-                            <p className="text-xs text-black mb-2 font-medium font-dm-sans">
-                              Write your email
-                            </p>
-                            <div className="relative">
-                              <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="w-full backdrop-blur-xl bg-background/40 border border-border/30 rounded-full px-4 py-3 pr-12 text-black placeholder-black/70 focus:outline-none focus:border-border/50 focus:bg-background/60 transition-all duration-200 text-sm shadow-lg ring-1 ring-inset ring-white/10"
-                              />
-                              <button className="absolute right-2 top-1/2 transform translate-y-[-40%] w-8 h-8 backdrop-blur-xl bg-primary/80 rounded-full flex items-center justify-center hover:bg-primary/90 transition-all duration-200 border border-border/30 shadow-lg ring-1 ring-inset ring-white/10">
-                                <FiSend className="w-4 h-4 text-black" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            )}
           </div>
         </div>{" "}
-        {/* Close content wrapper */}
-        {/* Progress Bar - Only show on home section with multiple images */}
-        {/*
-        {currentSection === "home" && currentBackgroundImages.length > 1 && (
-          <div
-            className="absolute bottom-0 left-0 w-full transform scale-x-[-1] z-20"
-            style={{ height: "30px" }}
-          >
-            <div className="w-full h-full bg-white/20">
-              <div
-                className="h-full bg-white/80"
-                style={{
-                  width: `${isResetting ? 0 : progressWidth}%`, // Go to 0% when resetting
-                  transition: isResetting ? "width 0.5s ease-in-out" : "none", // Animate only during reset
-                }}
-              />
-            </div>
-          </div>
-        )}
-        */}
       </motion.div>
-
-      {/* Marquee Section - Full Width with Borders */}
-      {/* {currentSection === "home" && (
-            <div className="bg-white/50 border-t border-b border-border">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="py-6 overflow-hidden"
-              >
-                <div className="flex whitespace-nowrap animate-marquee">
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  !text-white tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                  <span className="text-2xl md:text-3xl lg:text-4xl  text-white/70 tracking-wider px-8">
-                    <span className="fira-sans-medium-italic">How you grow matters</span>
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-          )} */}
 
       {/* Mobile Navigation Arrow Button - Only visible on mobile when on home section */}
       {currentSection === "home" && isMobile && introStep >= 4 && (
@@ -1333,101 +790,11 @@ export default function Home() {
         </motion.div>
       )}
 
-      {/* Home Intro Section - Only visible on Home page */}
-      {currentSection === "home" && (
-        <div className="bg-primary px-4 md:px-8 mt-0">
-          <div className="max-w-4xl mx-auto text-center ">
-            {/* <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="mb-12 "
-            >
-              <AnimatedIntroText
-                texts={[
-                  "Helping family-owned businesses grow, protect, and pass on wealth with strategy, care, and insight.",
-                  "Expert Tax, Accounting & Advisory Services with a Personal Touch.",
-                  "Connecting You to Clarity, Confidence and Control in Business & Wealth",
-                ]}
-                interval={4000}
-              />
-            </motion.div> */}
-
-            {/* Call to Action Buttons */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <GlassSurface
-                onClick={() => setIsCalendlyModalOpen(true)}
-                className="inline-flex items-center px-8 py-4 cursor-pointer"
-                borderRadius={20}
-                blur={18}
-                backgroundOpacity={0.08}
-                hoverable={true}
-              >
-                <Calendar className="w-5 h-5 mr-3" />
-                <span className="font-semibold text-lg">Book a Free Consultation</span>
-              </GlassSurface>
-
-              <a href="tel:0341495757">
-                <GlassSurface
-                  className="inline-flex items-center px-8 py-4"
-                  borderRadius={20}
-                  blur={18}
-                  backgroundOpacity={0.08}
-                  hoverable={true}
-                >
-                  <Phone className="w-5 h-5 mr-3" />
-                  <span className="font-semibold text-lg">Connect Now</span>
-                </GlassSurface>
-              </a>
-            </motion.div> */}
-          </div>
-        </div>
-      )}
-
-      {/* Scroll Stack Section - Only visible on Home page */}
-      {/* {currentSection === "home" && (
-        <div className="bg-card">
-          <ScrollStack cards={scrollStackCards} /> */}
-
-      {/* Single Learn More Button */}
-      {/* <div className="flex justify-center pt-6 pb-4 lg:pt-12 lg:pb-8">
-            <Link href="/services">
-              <GlassSurface
-                className="inline-flex items-center px-8 py-4 lg:px-12 lg:py-5 group"
-                borderRadius={20}
-                blur={18}
-                backgroundOpacity={0.08}
-                hoverable={true}
-              >
-                <span className="font-semibold text-lg lg:text-xl">Explore Our Services</span>
-                <svg
-                  className="ml-3 lg:ml-4 w-5 h-5 lg:w-6 lg:h-6 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </GlassSurface>
-            </Link>
-          </div>
-        </div>
-      } */}
+      {/* Testimonials Section - Only visible on Home page */}
+      {currentSection === "home" && <SimpleTestimonials />}
 
       {/* Our Impact Section - Only visible on Home page */}
-      {/* {currentSection === "home" && (
+      {currentSection === "home" && (
         <div className="bg-background text-foreground py-16">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -1442,59 +809,7 @@ export default function Home() {
           </div>
           <NoticeScroller />
         </div>
-      )} */}
-
-      {/* Badges Section - Only visible on Home page */}
-      {/* {currentSection === "home" && <BadgesSection />} */}
-
-      {/* Calculator Tools Section - Only visible on Calculators page */}
-      {/* No calculators section */}
-
-      {/* Schedule a Call Button - Only show when scrolled past hero sections */}
-      {/* {currentSection !== "services" && (
-        <motion.div
-          className="fixed bottom-6 right-6 z-50"
-          style={{
-            opacity: modalOpacity,
-            display: modalDisplay,
-          }}
-        >
-          <GlassSurface
-            onClick={() => setIsCalendlyModalOpen(true)}
-            className="px-6 py-3 cursor-pointer flex items-center gap-2"
-            borderRadius={25}
-            blur={18}
-            backgroundOpacity={0.08}
-            hoverable={true}
-          >
-            <svg
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <span className="font-semibold">Schedule a Call</span>
-          </GlassSurface>
-        </motion.div>
-      )} */}
-
-      {/* Calendly Modal */}
-      {/* <CalendlyModal
-        isOpen={isCalendlyModalOpen}
-        onClose={() => setIsCalendlyModalOpen(false)}
-        title="Schedule Your Financial Consultation"
-      /> */}
-
-      {/* Testimonials Section - Only visible on Home page */}
-      {/* {currentSection === "home" && <SimpleTestimonials />} */}
+      )}
 
       {/* Footer */}
       <Footer currentSection={currentSection} />
