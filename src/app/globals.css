@@ -1,22 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-
-/* Trada Sans Font Faces */
-@font-face {
-  font-family: "Trada Sans Bold";
-  src: url("/fonts/trada-sans-bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Trada Sans Light";
-  src: url("/fonts/trada-sans-light.otf") format("opentype");
-  font-style: normal;
-  font-display: swap;
-}
 
 @import "tailwindcss";
 
@@ -63,35 +45,14 @@
   }
 }
 
-/* Custom utilities for blog carousel */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 @theme inline {
   --animate-aurora: aurora 60s linear infinite;
   @keyframes aurora {
     from {
-      background-position:
-        50% 50%,
-        50% 50%;
+      background-position: 50% 50%, 50% 50%;
     }
     to {
-      background-position:
-        350% 50%,
-        350% 50%;
+      background-position: 350% 50%, 350% 50%;
     }
   }
   --radius-sm: calc(var(--radius) - 4px);
@@ -200,7 +161,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-libertinus-serif), serif;
+    font-family: ui-sans-serif, system-ui, sans-serif;
   }
 
   /* Ensure all text is white by default */
@@ -216,13 +177,11 @@
   h3,
   h4,
   h5,
-  h6,
-  .heading {
-    font-family: var(--font-dm-serif-display), serif;
+  h6 {
     color: #ffffff !important;
   }
 
-  /* Body text styles */
+  /* Text color */
   p,
   span,
   div,
@@ -230,15 +189,12 @@
   textarea,
   select,
   a,
-  nav,
-  .body-text {
-    font-family: var(--font-libertinus-serif), serif;
+  nav {
     color: #ffffff !important;
   }
 
-  /* Default button text color (removed button from above to override) */
+  /* Button color */
   button {
-    font-family: var(--font-libertinus-serif), serif;
     color: #ffffff !important;
   }
 
@@ -246,7 +202,7 @@
   .expandable-service-card button {
     color: #000000 !important;
   }
-  
+
   /* Service card buttons hover state - white text */
   .expandable-service-card button:hover {
     color: #ffffff !important;
@@ -351,22 +307,9 @@
   animation: marquee 15s linear infinite;
 }
 
-/* Pause animation on hover */
-/* .animate-marquee:hover {
-  animation-play-state: paused;
-} */
-
 /* Font utility classes */
-.font-heading {
-  font-family: var(--font-dm-serif-display), serif;
-}
-
-.font-body {
-  font-family: var(--font-libertinus-serif), serif;
-}
-
-.font-dm-sans {
-  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+.font-bebas-neue {
+  font-family: var(--font-bebas-neue), sans-serif;
 }
 
 /* Force black text classes with high specificity */
@@ -396,44 +339,6 @@
   color: #000000 !important;
   stroke: #000000 !important;
   fill: none !important;
-}
-
-/* Hero text specific styling */
-.hero-title {
-  font-family: var(--font-dm-serif-display), serif;
-  font-weight: 400;
-}
-
-.abril-fatface {
-  font-family: var(--font-abril-fatface) !important;
-  font-weight: 400 !important;
-  font-style: italic !important;
-}
-
-.bungee-regular {
-  font-family: var(--font-bungee) !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-.orbitron-regular {
-  font-family: var(--font-orbitron) !important;
-  font-optical-sizing: auto !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-
-.orbitron-medium {
-  font-family: var(--font-orbitron) !important;
-  font-optical-sizing: auto !important;
-  font-weight: 500 !important;
-  font-style: normal !important;
-}
-
-.orbitron-bold {
-  font-family: var(--font-orbitron) !important;
-  font-optical-sizing: auto !important;
-  font-weight: 700 !important;
-  font-style: normal !important;
 }
 
 /* Notice Scroller Animation */
@@ -468,49 +373,6 @@
   animation-play-state: paused;
 }
 
-/* Font Classes */
-.font-dm-sans {
-  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-}
-
-.font-bebas-neue {
-  font-family: "Bebas Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
-}
-
-.font-trada-bold {
-  font-family: "Trada Sans Bold", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
-}
-
-.font-trada-light {
-  font-family: "Trada Sans Light", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
-}
-
-/* Apply DM Sans to all paragraph text by default */
-p {
-  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-}
-
-/* Apply DM Sans to input elements for consistency */
-input,
-textarea,
-select {
-  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-}
-
-/* Apply DM Sans to span elements that contain text */
-span.text-sm,
-span.text-xs,
-span.text-lg {
-  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-}
-
 /* Hide Scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -519,5 +381,3 @@ span.text-lg {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
-
-/* okk plus the theme will be  navy blue and beige */
