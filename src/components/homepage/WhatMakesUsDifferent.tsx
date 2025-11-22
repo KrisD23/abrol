@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const WhatMakesUsDifferent = () => {
@@ -5,7 +6,7 @@ const WhatMakesUsDifferent = () => {
     <section className=" px-28 pt-28 pb-20">
       <div className="flex flex-col  gap-6">
         <h1 className="text-6xl font-semibold ">What Makes Us Different</h1>
-        <p className="text-2xl text-gray-300">
+        <p className="text-xl text-gray-300">
           More than accounting. A network designed to grow your business.
         </p>
         <p className=" text-gray-300 max-w-2xl">
@@ -39,7 +40,15 @@ const WhatMakesUsDifferent = () => {
             </p>
           </div>
         </div>
-        <div className="bg-red-200/20 col-span-6">IMAGE</div>
+        <div className="col-span-6 flex justify-end">
+          <Image
+            src={"/WhatMakesUsDifferent.jpg"}
+            width={500}
+            height={330}
+            alt="What Makes Us w-full h-300 Different"
+            className="object-cover rounded-lg"
+          />
+        </div>
       </div>
     </section>
   );
