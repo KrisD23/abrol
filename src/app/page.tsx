@@ -380,7 +380,7 @@ export default function Home() {
       )}
 
       {/* New Hero Section with your content */}
-      {introStep >= 4 && <NewHeroSection />}
+      {/* {introStep >= 4 && <NewHeroSection />} */}
 
       {/* New Homepage Sections */}
       <WhatMakesUsDifferent />
