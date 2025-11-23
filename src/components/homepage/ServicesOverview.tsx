@@ -74,7 +74,7 @@ export default function ServicesOverview() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="px-8 sm:px-18 lg:px-28 pt-28 pb-20">
+    <section ref={sectionRef} className="px-8 sm:px-18 lg:px-28 pt-15 pb-20">
       <div className="flex flex-col gap-6">
         <div className="lg:h-18 overflow-hidden">
           <h1 className="wmud-heading text-6xl font-semibold">

@@ -71,7 +71,7 @@ export default function ConnectorElement() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="px-8 sm:px-18 lg:px-28 pt-28 pb-20">
+    <section ref={sectionRef} className="px-8 sm:px-18 lg:px-28 pt-15 pb-20">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] [background-size:30px_30px]" />
 
