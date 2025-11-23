@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
       <body
         className={`${bebasNeue.variable} antialiased`}
-        style={{ maxWidth: "100vw", overflowX: "hidden" }}
+        // style={{ maxWidth: "100vw", overflowX: "hidden" }}
       >
         {children}
       </body>
