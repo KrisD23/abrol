@@ -52,7 +52,6 @@ const WhatMakesUsDifferent = () => {
           trigger: sectionRef.current,
           start: "30% 70%",
           toggleActions: "play none none reset",
-          markers: true,
         },
       });
     }, sectionRef);
@@ -61,22 +60,22 @@ const WhatMakesUsDifferent = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="px-28 pt-28 pb-20">
+    <section ref={sectionRef} className="px-8 sm:px-18 lg:px-28 pt-28 pb-20">
       {/* HEADING */}
       <div className="flex flex-col gap-4">
-        <div className="h-20 overflow-hidden">
+        <div className="lg:h-20 overflow-hidden">
           <h1 className="wmud-heading text-6xl font-semibold">
             What Makes Us Different
           </h1>
         </div>
 
         {/* CONTENT */}
-        <div className="h-10 overflow-hidden">
+        <div className="lg:h-10 overflow-hidden">
           <p className="wmud-content text-xl text-gray-300">
             More than accounting. A network designed to grow your business.
           </p>
         </div>
-        <div className="h-14 overflow-hidden">
+        <div className="sm:h-14 overflow-hidden">
           <p className="wmud-content text-gray-300 max-w-2xl">
             We support business owners who want more than compliance. You gain
             clarity, confidence and the right connections to move forward.
@@ -86,11 +85,23 @@ const WhatMakesUsDifferent = () => {
 
       {/* GRID */}
       <div className="grid grid-cols-12 gap-12 mt-20">
-        <div className="col-span-6 flex flex-col gap-12">
+        {/* IMAGE FIRST on small screens, SECOND on xl and above */}
+        <div className="col-span-12 lg:col-span-6 flex justify-start lg:justify-end order-1 lg:order-2">
+          <Image
+            src={"/WhatMakesUsDifferent.jpg"}
+            width={400}
+            height={330}
+            alt="What Makes Us Different"
+            className="object-cover rounded-lg w-80 sm:w-full xs:max-w-sm sm:max-w-md"
+          />
+        </div>
+
+        {/* POINTS SECOND on small screens, FIRST on xl and above */}
+        <div className="col-span-12 lg:col-span-6 flex flex-col gap-12 order-2 lg:order-1">
           {/* POINT 1 */}
-          <div className=" flex gap-4">
+          <div className="flex gap-4">
             <div className="border h-full border-white" />
-            <div className="w-2xl overflow-hidden">
+            <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
               <div className="wmud-point">
                 <h1 className="text-xl font-semibold">Trusted Advice</h1>
                 <p className="text-gray-300">
@@ -101,9 +112,9 @@ const WhatMakesUsDifferent = () => {
           </div>
 
           {/* POINT 2 */}
-          <div className=" flex gap-4">
+          <div className="flex gap-4">
             <div className="border h-full border-white" />
-            <div className="w-2xl overflow-hidden">
+            <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
               <div className="wmud-point">
                 <h1 className="text-xl font-semibold">Connected Expertise</h1>
                 <p className="text-gray-300">
@@ -115,9 +126,9 @@ const WhatMakesUsDifferent = () => {
           </div>
 
           {/* POINT 3 */}
-          <div className=" flex gap-4">
+          <div className="flex gap-4">
             <div className="border h-full border-white" />
-            <div className="w-2xl overflow-hidden">
+            <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
               <div className="wmud-point">
                 <h1 className="text-xl font-semibold">Long Term Focus</h1>
                 <p className="text-gray-300">
@@ -127,17 +138,6 @@ const WhatMakesUsDifferent = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* IMAGE */}
-        <div className="col-span-6 flex justify-end">
-          <Image
-            src={"/WhatMakesUsDifferent.jpg"}
-            width={500}
-            height={330}
-            alt="What Makes Us Different"
-            className="object-cover rounded-lg"
-          />
         </div>
       </div>
     </section>
