@@ -47,14 +47,17 @@
 
 @theme inline {
   --animate-aurora: aurora 60s linear infinite;
+
   @keyframes aurora {
     from {
       background-position: 50% 50%, 50% 50%;
     }
+
     to {
       background-position: 350% 50%, 350% 50%;
     }
   }
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -97,68 +100,101 @@
 
   /* Black Theme */
   /* Main site background - black */
-  --background: #000000; /* Black background */
-  --foreground: #ffffff; /* White for text */
+  --background: #000000;
+  /* Black background */
+  --foreground: #ffffff;
+  /* White for text */
 
   /* Cards and panels - dark gray */
-  --card: #1a1a1a; /* Dark gray card */
-  --card-foreground: #ffffff; /* White text on cards */
+  --card: #1a1a1a;
+  /* Dark gray card */
+  --card-foreground: #ffffff;
+  /* White text on cards */
 
   /* Popovers and modals */
-  --popover: #1a1a1a; /* Dark gray */
-  --popover-foreground: #ffffff; /* White text */
+  --popover: #1a1a1a;
+  /* Dark gray */
+  --popover-foreground: #ffffff;
+  /* White text */
 
   /* Primary elements - dark gray for buttons, links, emphasis */
-  --primary: #1a1a1a; /* Dark gray */
-  --primary-foreground: #ffffff; /* White on primary */
+  --primary: #1a1a1a;
+  /* Dark gray */
+  --primary-foreground: #ffffff;
+  /* White on primary */
 
   /* Secondary elements - darker gray for subtle backgrounds */
-  --secondary: #0f0f0f; /* Darker gray */
-  --secondary-foreground: #ffffff; /* White on secondary */
+  --secondary: #0f0f0f;
+  /* Darker gray */
+  --secondary-foreground: #ffffff;
+  /* White on secondary */
 
   /* Muted elements - darker gray for less important content */
-  --muted: #0f0f0f; /* Darker gray */
-  --muted-foreground: #ffffff; /* White text on muted */
+  --muted: #0f0f0f;
+  /* Darker gray */
+  --muted-foreground: #ffffff;
+  /* White text on muted */
 
   /* Accent elements - dark gray for highlights */
-  --accent: #1a1a1a; /* Dark gray accent */
-  --accent-foreground: #ffffff; /* White on accent */
+  --accent: #1a1a1a;
+  /* Dark gray accent */
+  --accent-foreground: #ffffff;
+  /* White on accent */
 
   /* Destructive elements */
-  --destructive: #dc2626; /* Red for destructive actions */
-  --destructive-foreground: #ffffff; /* White on destructive */
+  --destructive: #dc2626;
+  /* Red for destructive actions */
+  --destructive-foreground: #ffffff;
+  /* White on destructive */
 
   /* Borders - subtle gray */
-  --border: #333333; /* Gray border */
+  --border: #333333;
+  /* Gray border */
 
   /* Form inputs - dark gray */
-  --input: #1a1a1a; /* Dark gray input */
+  --input: #1a1a1a;
+  /* Dark gray input */
 
   /* Focus rings - white for accessibility */
-  --ring: #ffffff; /* White focus ring */
+  --ring: #ffffff;
+  /* White focus ring */
 
   /* Chart colors - gray variations */
-  --chart-1: #1a1a1a; /* Dark gray */
-  --chart-2: #333333; /* Medium gray */
-  --chart-3: #4d4d4d; /* Lighter gray */
-  --chart-4: #666666; /* Even lighter gray */
-  --chart-5: #808080; /* Light gray */
+  --chart-1: #1a1a1a;
+  /* Dark gray */
+  --chart-2: #333333;
+  /* Medium gray */
+  --chart-3: #4d4d4d;
+  /* Lighter gray */
+  --chart-4: #666666;
+  /* Even lighter gray */
+  --chart-5: #808080;
+  /* Light gray */
 
   /* Sidebar elements */
-  --sidebar: #000000; /* Black sidebar */
-  --sidebar-foreground: #ffffff; /* White sidebar text */
-  --sidebar-primary: #1a1a1a; /* Dark gray sidebar primary */
-  --sidebar-primary-foreground: #ffffff; /* White on primary */
-  --sidebar-accent: #1a1a1a; /* Dark gray sidebar accent */
-  --sidebar-accent-foreground: #ffffff; /* White on accent */
-  --sidebar-border: #333333; /* Gray border */
-  --sidebar-ring: #ffffff; /* White focus ring */
+  --sidebar: #000000;
+  /* Black sidebar */
+  --sidebar-foreground: #ffffff;
+  /* White sidebar text */
+  --sidebar-primary: #1a1a1a;
+  /* Dark gray sidebar primary */
+  --sidebar-primary-foreground: #ffffff;
+  /* White on primary */
+  --sidebar-accent: #1a1a1a;
+  /* Dark gray sidebar accent */
+  --sidebar-accent-foreground: #ffffff;
+  /* White on accent */
+  --sidebar-border: #333333;
+  /* Gray border */
+  --sidebar-ring: #ffffff;
+  /* White focus ring */
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: ui-sans-serif, system-ui, sans-serif;
@@ -190,13 +226,11 @@
   select,
   a,
   nav {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   /* Button color */
-  button {
-    color: #ffffff !important;
-  }
+
 
   /* Homepage component overrides */
   .homepage-section {
@@ -335,6 +369,7 @@
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(-100%);
   }
@@ -383,6 +418,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -397,6 +433,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -412,9 +449,13 @@
 
 /* Hide Scrollbar */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
+  /* Safari and Chrome */
 }

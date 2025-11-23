@@ -1,88 +1,57 @@
-"use client";
+import Image from "next/image";
+import React from "react";
 
-import { motion } from "framer-motion";
-
-const features = [
-  {
-    title: "Trusted Advice",
-    description:
-      "Expert guidance that brings structure, transparency and confidence to every financial decision.",
-  },
-  {
-    title: "Connected Expertise",
-    description:
-      "We bring the right people into the room so your business can move faster with fewer obstacles.",
-  },
-  {
-    title: "Long Term Focus",
-    description:
-      "Strategies that support sustainable growth, protect wealth and strengthen your future legacy.",
-  },
-];
-
-export default function WhatMakesUsDifferent() {
+const WhatMakesUsDifferent = () => {
   return (
-    <section className="py-20 bg-black homepage-section">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            What Makes Us Different
-          </motion.h2>
+    <section className=" px-28 pt-28 pb-20">
+      <div className="flex flex-col  gap-6">
+        <h1 className="text-6xl font-semibold ">What Makes Us Different</h1>
+        <p className="text-xl text-gray-300">
+          More than accounting. A network designed to grow your business.
+        </p>
+        <p className=" text-gray-300 max-w-2xl">
+          We support business owners who want more than compliance. You gain
+          clarity, confidence and the right connections to move forward with
+          purpose.
+        </p>
+      </div>
 
-          <motion.p
-            className="text-xl md:text-2xl text-gray-300 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            More than accounting. A network designed to grow your business.
-          </motion.p>
-
-          <motion.p
-            className="text-lg text-gray-400 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            We support business owners who want more than compliance. You gain
-            clarity, confidence and the right connections to move forward with
-            purpose.
-          </motion.p>
+      <div className="grid grid-cols-12 gap-12 mt-20">
+        <div className=" col-span-6 flex flex-col gap-12">
+          <div className="border-l-2 px-4 py-1 border-white">
+            <h1 className="text-xl font-semibold">Trusted Advice</h1>
+            <p className=" text-gray-300">
+              Expert guidance that brings structure, transparency and confidence
+              to every financial decision.
+            </p>
+          </div>
+          <div className="border-l-2 px-4 py-1 border-white">
+            <h1 className="text-xl font-semibold">Connected Expertise</h1>
+            <p className=" text-gray-300">
+              We bring the right people into the room so your business can move
+              faster with fewer obstacles.
+            </p>
+          </div>
+          <div className="border-l-2 px-4 py-1 border-white">
+            <h1 className="text-xl font-semibold">Long Term Focus</h1>
+            <p className=" text-gray-300">
+              Strategies that support sustainable growth, protect wealth and
+              strengthen your future legacy.
+            </p>
+          </div>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="w-8 h-8 bg-white rounded-full" />
-              </div>
-
-              <h3 className="text-xl font-bold mb-4 text-white">
-                {feature.title}
-              </h3>
-
-              <p className="text-gray-300 leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+        <div className="col-span-6 flex justify-end">
+          <Image
+            src={"/WhatMakesUsDifferent.jpg"}
+            width={500}
+            height={330}
+            alt="What Makes Us w-full h-300 Different"
+            className="object-cover rounded-lg"
+          />
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default WhatMakesUsDifferent;
