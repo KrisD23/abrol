@@ -2,6 +2,17 @@
 
 @import "tailwindcss";
 
+.connector-key {
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.connector-key:hover {
+  border-color: var(--secondary-brand) !important;
+  background-color: rgba(0, 116, 255, 0.25) !important;
+  color: #fff !important;
+}
 /* Mobile Responsive Base Styles */
 @media (max-width: 768px) {
   html {
@@ -25,23 +36,23 @@
 
   /* Hide on mobile utility */
   .hidden-mobile {
-    display: none !important;
+    display: none ;
   }
 
   /* Show on mobile utility */
   .show-mobile {
-    display: block !important;
+    display: block ;
   }
 }
 
 /* Desktop only utilities */
 @media (min-width: 769px) {
   .hidden-desktop {
-    display: none !important;
+    display: none ;
   }
 
   .show-desktop {
-    display: block !important;
+    display: block ;
   }
 }
 
@@ -100,7 +111,14 @@
 
   /* Black Theme */
   /* Main site background - black */
-  --background: #000000;
+  /* --background: #792828;      ----Current*/
+--background: radial-gradient(
+  circle,
+  #001229 0%,     /* darker blue → less intensity */
+  #000814 20%,    /* black appears earlier (20% more) */
+  #000000 85%     /* stronger black dominance */
+);
+
   /* Black background */
   --foreground: #ffffff;
   /* White for text */
@@ -140,7 +158,8 @@
   /* Dark gray accent */
   --accent-foreground: #ffffff;
   /* White on accent */
-
+  /* Custom brand/secondary color for outlines & hover */
+  --secondary-brand: #0074ff;
   /* Destructive elements */
   --destructive: #dc2626;
   /* Red for destructive actions */
@@ -148,7 +167,7 @@
   /* White on destructive */
 
   /* Borders - subtle gray */
-  --border: #333333;
+  /* --border: #0074ff; */
   /* Gray border */
 
   /* Form inputs - dark gray */
@@ -188,6 +207,12 @@
   /* Gray border */
   --sidebar-ring: #ffffff;
   /* White focus ring */
+  /* Custom color for gradient text or accents */
+  --secondary-accent: #003873;
+  /* for global hover */
+  --global-border-color: var(--border);
+  
+
 }
 
 @layer base {
@@ -195,17 +220,16 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
+  /* body {
     @apply bg-background text-foreground;
     font-family: ui-sans-serif, system-ui, sans-serif;
-  }
+  } */
+   body {
+  background: var(--background) !important;
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
 
-  /* Ensure all text is white by default */
-  *,
-  *::before,
-  *::after {
-    color: #ffffff;
-  }
 
   /* Heading styles */
   h1,
@@ -214,69 +238,63 @@
   h4,
   h5,
   h6 {
-    color: #ffffff !important;
-  }
-
-  /* Text color */
-  p,
-  span,
-  div,
-  input,
-  textarea,
-  select,
-  a,
-  nav {
     color: #ffffff;
   }
+
 
   /* Button color */
 
 
   /* Homepage component overrides */
   .homepage-section {
-    background: #000000 !important;
+    background: #000000 ;
   }
 
   .homepage-section * {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   .homepage-section .text-gray-300 {
-    color: #d1d5db !important;
+    color: #d1d5db ;
   }
 
   .homepage-section .text-gray-400 {
-    color: #9ca3af !important;
+    color: #9ca3af ;
   }
 
   .homepage-section .text-blue-400 {
-    color: #60a5fa !important;
+    color: #60a5fa ;
   }
 
-  .homepage-section .bg-black {
-    background-color: #000000 !important;
+  .homepage-section .bg-gradient-to-b {
+      background: radial-gradient(
+    circle,
+    #002147 0%,
+    #000814 60%,
+    #000000 100%
+  );
   }
 
   .homepage-section .bg-gray-900 {
-    background-color: #111827 !important;
+    background-color: #111827 ;
   }
 
   .homepage-section .bg-gray-800 {
-    background-color: #1f2937 !important;
+    background-color: #1f2937 ;
   }
 
   .homepage-section .border-gray-700 {
-    border-color: #374151 !important;
+    border-color: #374151 ;
   }
 
   /* Service card buttons - override with black text */
   .expandable-service-card button {
-    color: #000000 !important;
+    color: #000000 ;
   }
 
   /* Service card buttons hover state - white text */
   .expandable-service-card button:hover {
-    color: #ffffff !important;
+    color: #ffffff ;
   }
 
   /* Glassmorphism base styles */
@@ -305,7 +323,7 @@
 
   /* Remove any color inheritance that might cause beige appearance */
   .glass-surface {
-    background-color: transparent !important;
+    background-color: transparent ;
   }
 
   /* Ensure buttons don't inherit theme colors */
@@ -313,14 +331,14 @@
   .glass-surface button,
   a.glass-surface,
   .glass-surface a {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.08) ;
   }
 
   button.glass-surface:hover,
   .glass-surface button:hover,
   a.glass-surface:hover,
   .glass-surface a:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.15) ;
   }
 
   /* Navbar specific styles */
@@ -348,19 +366,19 @@
   .nav-link,
   .nav-link *,
   .nav-link span {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
+    background: none ;
+    border: none ;
+    box-shadow: none ;
+    outline: none t;
   }
 
   .nav-link:hover,
   .nav-link:hover *,
   .nav-link:hover span {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
+    background: none ;
+    border: none ;
+    box-shadow: none ;
+    outline: none ;
   }
 }
 
@@ -389,17 +407,17 @@
 .force-black-text *,
 .force-black-text span,
 .force-black-text div {
-  color: #000000 !important;
-  font-weight: bold !important;
+  color: #000000 ;
+  font-weight: bold ;
 }
 
 .carousel-active-text,
 .carousel-active-text *,
 .carousel-active-text span,
 .carousel-active-text div {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  font-weight: bold !important;
+  color: #000000 ;
+  background-color: #ffffff ;
+  font-weight: bold ;
 }
 
 /* ABN button specific overrides */
@@ -408,9 +426,9 @@
 .abn-button-text span,
 .abn-button-text div,
 .abn-button-text svg {
-  color: #000000 !important;
-  stroke: #000000 !important;
-  fill: none !important;
+  color: #000000 ;
+  stroke: #000000 ;
+  fill: none ;
 }
 
 /* Notice Scroller Animation */
@@ -458,4 +476,77 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
+}/* Override global border for the hover line */
+.elegant-line {
+  border-left: 2px solid white !important;
+}
+
+.group:hover .elegant-line {
+  border-left: 2px solid var(--secondary-brand) !important;
+}
+
+/* Override global border for the box */
+.hover-box {
+  border: 1px solid white !important;
+}
+
+.group:hover .hover-box {
+  border-color: var(--secondary-brand) !important;
+}
+
+/* Talk Button with Blue Stroke and Hover Effect */
+.talk-button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 24px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Blue stroke using pseudo-element — works even with border reset */
+.talk-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--secondary-brand); /* your blue stroke */
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.talk-button:hover::before {
+  border-color: var(--secondary-brand);
+  box-shadow: 0 0 10px var(--secondary-brand);
+}
+/* Override GlassSurface hover background for Talk To Us button */
+.talk-button:hover {
+  background-color: color-mix(in srgb, var(--secondary-brand) 20%, transparent) !important;
+  /* Or use: rgba(0,116,255,0.2) if color-mix isn't supported */
+}
+
+/* Override the internal glow GlassSurface creates */
+.talk-button:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--secondary-brand) 35%, transparent) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+}
+.no-border-reset *,
+.no-border-reset *::before,
+.no-border-reset *::after {
+  border: none !important;
+}
+/* FIX FOR CONNECTOR CHIPS */
+.connector-container *,
+.connector-container *::before,
+.connector-container *::after {
+  border: unset !important;
 }

@@ -99,44 +99,63 @@ const WhatMakesUsDifferent = () => {
         {/* POINTS SECOND on small screens, FIRST on xl and above */}
         <div className="col-span-12 lg:col-span-6 flex flex-col gap-12 order-2 lg:order-1">
           {/* POINT 1 */}
-          <div className="flex gap-4">
-            <div className="border h-full border-white" />
+          <div className="flex gap-4 group transition-all duration-300 hover:-translate-y-1">
+            {/* LEFT LINE */}
+            <div className="border h-full border-white elegant-line"></div>
+
             <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
               <div className="wmud-point">
-                <h1 className="text-xl font-semibold">Trusted Advice</h1>
+                <h1 className="text-xl font-semibold text-[var(--secondary-brand)]">
+                  Trusted Advice
+                </h1>
+
                 <p className="text-gray-300">
                   Expert guidance that brings transparency and confidence.
                 </p>
               </div>
             </div>
+            <div className="mt-6"></div>
           </div>
 
+          {/* Long Term Focus */}
           {/* POINT 2 */}
-          <div className="flex gap-4">
-            <div className="border h-full border-white" />
+          <div className="flex gap-4 group transition-all duration-300 hover:-translate-y-1">
+            {/* LEFT LINE */}
+            <div className="border h-full border-white elegant-line"></div>
+
             <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
               <div className="wmud-point">
-                <h1 className="text-xl font-semibold">Connected Expertise</h1>
+                <h1 className="text-xl font-semibold text-[var(--secondary-brand)]">
+                  Connected Expertise
+                </h1>
+
                 <p className="text-gray-300">
                   We bring the right people into the room so your business moves
-                  faster.
+                  faste
                 </p>
               </div>
             </div>
+            <div className="mt-6"></div>
           </div>
 
           {/* POINT 3 */}
-          <div className="flex gap-4">
-            <div className="border h-full border-white" />
+          <div className="flex gap-4 group transition-all duration-300 hover:-translate-y-1">
+            {/* LEFT LINE */}
+            <div className="border h-full border-white elegant-line"></div>
+
             <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
               <div className="wmud-point">
-                <h1 className="text-xl font-semibold">Long Term Focus</h1>
+                <h1 className="text-xl font-semibold text-[var(--secondary-brand)]">
+                  Long Term Focus
+                </h1>
+
                 <p className="text-gray-300">
                   Strategies that protect wealth and strengthen your future
                   legacy.
                 </p>
               </div>
             </div>
+            <div className="mt-6"></div>
           </div>
         </div>
       </div>

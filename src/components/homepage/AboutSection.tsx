@@ -71,7 +71,7 @@ export default function AboutSection() {
           {/* Line 1 */}
           <div className="2xl:h-10 overflow-hidden">
             <h2 className="wmud-content text-xl font-medium  max-w-96 sm:max-w-full">
-              Your trusted partner for clarity, growth and long term stability.
+            Your<span className="text-[var(--secondary-brand)]"> trusted partner</span> for clarity, growth and long term stability.
             </h2>
           </div>
 
@@ -115,7 +115,7 @@ export default function AboutSection() {
       </div>
 
       {/* BUTTON (left → right animation) */}
-      <button className="about-btn mt-10 px-6 py-3 rounded-lg font-medium bg-gray-200/20 text-gray-200 border-2 border-gray-400/40">
+      <button className="about-btn mt-10 px-6 py-3 rounded-lg font-medium bg-gray-200/20 text-gray-200 border-2 border-gray-400/40 hover:bg-[var(--secondary-brand)]/30 hover:border-[var(--secondary-brand)]/40 transition-all duration-300">
         Learn More About Us
       </button>
     </section>

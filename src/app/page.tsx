@@ -96,7 +96,7 @@ export default function Home() {
             animate={{
               opacity: 1,
               backgroundColor:
-                introStep >= 4 ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)",
+                introStep >= 4 ? "rgba(0,0,0,0)" : "rgba(12,0,0,255)",
             }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0 z-[9999] flex items-center justify-center"
@@ -117,7 +117,7 @@ export default function Home() {
             >
               <a href="tel:+61341495757">
                 <GlassSurface
-                  className="px-6 py-2 cursor-pointer"
+                  className="px-6 py-2 cursor-pointer talk-button"
                   borderRadius={24}
                   blur={20}
                   backgroundOpacity={0.08}
@@ -177,7 +177,7 @@ export default function Home() {
 
       {/* Hero */}
       <motion.div
-        className="relative h-screen text-white transform scale-x-[-1] overflow-hidden bg-black"
+        className="relative h-screen text-white transform scale-x-[-1] overflow-hidden bg-gradient-to-b from-[#000814] via-[#001529] to-[#000000]"
         initial={{ opacity: 0 }}
         animate={{ opacity: introStep >= 4 ? 1 : 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -188,7 +188,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-background/60" />
         <div className="transform scale-x-[-1] w-full h-full relative z-10">
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-b/30" />
 
           {/* "How you grow matters" overlay */}
           {introStep >= 4 && !isMobile && (
@@ -292,8 +292,8 @@ export default function Home() {
                       className="relative inline-block text-2xl md:text-2xl lg:text-3xl text-white leading-tight transition-all duration-300 group-hover:text-white/90 pr-10 font-bebas-neue whitespace-nowrap"
                     >
                       News
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-3/4"></span>
-                      <span className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--secondary-brand)] transition-all duration-300 ease-out group-hover:w-3/4"></span>
+                      <span className="absolute top-1/2 left-full ml-2 text-[var(--secondary-brand)] transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
                         →
                       </span>
                     </Link>
@@ -312,8 +312,8 @@ export default function Home() {
                       className="relative inline-block text-2xl md:text-2xl lg:text-3xl text-white leading-tight transition-all duration-300 group-hover:text-white/90 pr-10 font-bebas-neue whitespace-nowrap"
                     >
                       Contact Us
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-3/4"></span>
-                      <span className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--secondary-brand)] transition-all duration-300 ease-out group-hover:w-3/4"></span>
+                      <span className="absolute top-1/2 left-full ml-2 text-[var(--secondary-brand)] transform -translate-y-1/2 opacity-0 translate-x-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
                         →
                       </span>
                     </Link>
@@ -336,9 +336,10 @@ export default function Home() {
                   }px)`,
                 }}
               >
-                <p className="text-3xl md:text-6xl lg:text-8xl uppercase font-bebas-neue text-white">
-                  How you grow matters
-                </p>
+<p className="text-3xl md:text-6xl lg:text-8xl uppercase font-bebas-neue text-white">
+  How you <span style={{ color: "var(--secondary-brand)" }}>grow</span> matters
+</p>
+
               </motion.div>
             )}
         </div>
@@ -394,8 +395,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4 text-primary">
-              <span className="font-bebas-neue">OUR </span>
-              <span className="text-primary font-bebas-neue">IMPACT</span>
+              <span className="font-bebas-neue text-white">OUR </span>
+              <span className="text-[var(--secondary-brand)]/35 font-bebas-neue ">IMPACT</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-dm-sans">
               Numbers that speak to our commitment and success
