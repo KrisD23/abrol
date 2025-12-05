@@ -1,9 +1,14 @@
-// components/TestimonialCard.jsx
 import React from "react";
 import Image from "next/image";
 
-const TestimonialCard = ({
-  author,
+interface TestimonialCardProps {
+  company: string;
+  text: string;
+  rating?: number;
+  avatar?: string;
+}
+
+const TestimonialCard: React.FC<TestimonialCardProps> = ({
   company,
   text,
   rating = 4.8,
@@ -19,11 +24,11 @@ const TestimonialCard = ({
         minHeight: "220px",
         height: "245px",
         border: "1px solid rgba(0,116,255,0.35)",
-    boxShadow: `
-      0 0 18px rgba(0,116,255,0.25),
-      0 0 32px rgba(0,116,255,0.15),
-      inset 0 0 12px rgba(0,116,255,0.10)
-    `,
+        boxShadow: `
+          0 0 18px rgba(0,116,255,0.25),
+          0 0 32px rgba(0,116,255,0.15),
+          inset 0 0 12px rgba(0,116,255,0.10)
+        `,
       }}
     >
       {/* Light vignette + spotlight */}
@@ -39,23 +44,10 @@ const TestimonialCard = ({
 
       {/* CONTENT */}
       <div className="relative z-10 h-full flex flex-col">
-        {/* Header row */}
+        {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
-            
-            {/* name + role */}
             <div style={{ marginLeft: 6 }}>
-              <p
-                style={{
-                  color: "#fff",
-                  fontSize: 18,
-                  fontWeight: 700,
-                  letterSpacing: 0.6,
-                  marginBottom: 4,
-                }}
-              >
-                {author}
-              </p>
               <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13 }}>
                 {company}
               </p>
@@ -63,8 +55,7 @@ const TestimonialCard = ({
           </div>
         </div>
 
-
-        {/* Quote text */}
+        {/* Quote */}
         <p className="text-gray-200 mt-4 leading-relaxed text-sm md:text-base">
           “{text}”
         </p>
