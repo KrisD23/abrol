@@ -29,7 +29,7 @@ const homeTypingTexts: Array<[string, string]> = [
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
-  const [showIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);
   const [introStep, setIntroStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileNavState, setMobileNavState] = useState(false);
@@ -43,7 +43,10 @@ export default function Home() {
     const t1 = setTimeout(() => setIntroStep(1), 1000);
     const t2 = setTimeout(() => setIntroStep(2), 2000);
     const t3 = setTimeout(() => setIntroStep(3), 3500);
-    const t4 = setTimeout(() => setIntroStep(4), 4500);
+    const t4 = setTimeout(() => {
+  setIntroStep(4);
+  setShowIntro(false);   
+}, 4500);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -61,22 +64,23 @@ export default function Home() {
   }, []);
 
   // Wheel event handler for animation trigger - only for hero section
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      // Only prevent default and handle custom scroll if we're in the hero section
-      if (scrollProgress < 0.4) {
-        e.preventDefault();
-        setScrollProgress((prev) => {
-          const newProgress = prev + (e.deltaY > 0 ? 0.1 : -0.1);
-          return Math.max(0, Math.min(0.4, newProgress)); // Cap at 0.4
-        });
-      }
-      // If scrollProgress is at max (0.4), allow normal scrolling to other sections
-    };
+useEffect(() => {
+  const handleWheel = (e: WheelEvent) => {
+    // 🔥 FIX: stop blocking scroll completely after intro ends
+    if (!showIntro) return;
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [scrollProgress]);
+    if (scrollProgress < 0.4) {
+      e.preventDefault();
+      setScrollProgress((prev) => {
+        const newProgress = prev + (e.deltaY > 0 ? 0.1 : -0.1);
+        return Math.max(0, Math.min(0.4, newProgress));
+      });
+    }
+  };
+
+  window.addEventListener("wheel", handleWheel, { passive: false });
+  return () => window.removeEventListener("wheel", handleWheel);
+}, [scrollProgress, showIntro]);
 
   const contentOpacity = scrollProgress < 0.15 ? 1 - scrollProgress / 0.15 : 0;
   const contentY = scrollProgress < 0.15 ? -(scrollProgress / 0.15) * 50 : -50;

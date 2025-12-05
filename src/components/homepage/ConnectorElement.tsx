@@ -17,7 +17,9 @@ export default function ConnectorElement() {
     if (!chipsRow) return;
 
     const ctx = gsap.context(() => {
-      // HEADINGS
+      // -----------------------
+      // MAIN HEADLINE
+      // -----------------------
       gsap.from(".wmud-heading", {
         y: 80,
         opacity: 0,
@@ -30,7 +32,9 @@ export default function ConnectorElement() {
         },
       });
 
-      // SUB CONTENT
+      // -----------------------
+      // SUB HEADINGS
+      // -----------------------
       gsap.from(".wmud-content", {
         y: 60,
         opacity: 0,
@@ -44,10 +48,13 @@ export default function ConnectorElement() {
         },
       });
 
-      // LEFT PARAGRAPH
+      // -----------------------
+      // LEFT PARAGRAPH BLOCK
+      // ❗ REAL FIX APPLIED → opacity REMOVED
+      // -----------------------
       gsap.from(".wmud-point", {
         x: -120,
-        opacity: 0,
+        opacity: 1,     // <-- IMPORTANT FIX (DO NOT FADE THE BIG BLOCK)
         duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
@@ -57,7 +64,9 @@ export default function ConnectorElement() {
         },
       });
 
-      // CHIP ROW animation — uses the actual chipsRow element as trigger
+      // -----------------------
+      // CHIP ANIMATION
+      // -----------------------
       gsap.from(".connector-key", {
         y: 20,
         opacity: 0,
@@ -66,9 +75,8 @@ export default function ConnectorElement() {
         ease: "power3.out",
         scrollTrigger: {
           trigger: chipsRow,
-          start: "top 96%", // make sure it triggers when chips are in view
-          toggleActions: "play none none reset"
-
+          start: "top 95%",
+          once: true,
         },
       });
     }, sectionRef);
@@ -87,14 +95,14 @@ export default function ConnectorElement() {
   return (
     <section
       ref={sectionRef}
-      className="relative px-8 sm:px-18 lg:px-28 pt-15 pb-20"
+      className="relative z-10 px-8 sm:px-18 lg:px-28 pt-15 pb-20"
     >
-      {/* Background grid (behind everything) */}
-      <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] [background-size:30px_30px]"
-      />
+      {/* BG GRID */}
+<div
+  className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] [background-size:30px_30px]"
+></div>
 
-      {/* Heading */}
+      {/* HEADING */}
       <div className="lg:h-18 overflow-hidden">
         <h1 className="wmud-heading text-6xl font-semibold">
           The <span style={{ color: "var(--secondary-brand)" }}>Connector</span>{" "}
@@ -102,7 +110,7 @@ export default function ConnectorElement() {
         </h1>
       </div>
 
-      {/* Grid content */}
+      {/* GRID CONTENT */}
       <div className="grid grid-cols-12 gap-12 mt-20">
         <div className="col-span-12 lg:col-span-6 text-xl">
           <div className="flex flex-col gap-4">
@@ -125,7 +133,7 @@ export default function ConnectorElement() {
         </div>
 
         <div className="col-span-12 lg:col-span-6 flex gap-4 sm:gap-8 lg:gap-14">
-          <div className="bg-border" />
+          <div className="border" />
           <div className="max-w-2xl w-sm sm:w-2xl overflow-hidden">
             <div className="wmud-point flex flex-col gap-12 text-gl sm:text-xl max-w-80 sm:max-w-full">
               <p>
@@ -138,8 +146,8 @@ export default function ConnectorElement() {
               <p>
                 From legal specialists and financial planners to brokers and
                 operational partners,
-                <span className="italic"> you gain a trusted network</span> selected
-                to support your success.
+                <span className="italic"> you gain a trusted network</span>{" "}
+                selected to support your success.
               </p>
             </div>
           </div>
@@ -147,38 +155,32 @@ export default function ConnectorElement() {
       </div>
 
       {/* CHIP ROW */}
-      <div className="w-full mt-16 sm:mt-20 flex justify-center">
-        {/* Key changes:
-            - no wrapping (flex-nowrap)
-            - prevent shrinking of items (flex-shrink-0)
-            - ensure enough max width so items can sit on one line on typical desktop
-        */}
-        <div className="chips-row relative z-20 flex flex-wrap justify-center gap-6 sm:gap-9 max-w-[1100px]">
+      {/* <div className="w-full mt-16 sm:mt-20 flex justify-center">
+        <div className="chips-row flex flex-wrap justify-center gap-6 sm:gap-9 max-w-[1100px]">
           {chips.map((item, i) => (
-      <div
-        key={i}
-        className="
-          connector-key
-          min-w-[160px]
-          h-14 px-6 
-          bg-gray-200/20 
-          text-sm rounded-full 
-          text-gray-200 
-          border-2 border-white/10
-          flex items-center justify-center whitespace-nowrap
-          transition-all duration-300 ease-out
-          hover:bg-[var(--secondary-brand)]/25 
-          hover:border-[var(--secondary-brand)] 
-          hover:text-white
-          transform-gpu
-        "
-      >
-
+            <div
+              key={i}
+              className="
+                connector-key
+                min-w-[160px]
+                h-14 px-6
+                bg-white/20
+                text-sm rounded-full
+                text-gray-200
+                border-2 border-white/10
+                flex items-center justify-center whitespace-nowrap
+                transition-all duration-300 ease-out
+                hover:bg-[var(--secondary-brand)]/25
+                hover:border-[var(--secondary-brand)]
+                hover:text-white
+                transform-gpu
+              "
+            >
               <p className="m-0">{item}</p>
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
