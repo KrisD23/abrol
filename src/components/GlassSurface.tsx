@@ -56,7 +56,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     `,
     backdropFilter: `blur(${blur + 6}px) saturate(1.8) brightness(1.1)`,
     WebkitBackdropFilter: `blur(${blur + 6}px) saturate(1.8) brightness(1.1)`,
-    background: `rgba(255, 255, 255, ${backgroundOpacity + 0.08})`,
+    background: `rgba(0, 116, 255, ${backgroundOpacity + 0.08})`,
     border: '1px solid rgba(255, 255, 255, 0.4)',
   } : {};
 

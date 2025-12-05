@@ -85,7 +85,7 @@ export default function Footer({ currentSection = "home" }: FooterProps) {
             <div className="md:col-span-1">
               <div
                 className="relative flex items-center justify-center"
-                style={{ width: "320px", height: "120px", overflow: "visible" }}
+                style={{ width: "280px", height: "120px", overflow: "visible" }}
               >
                 <Image
                   src="/newnewlogo.png"
@@ -98,7 +98,7 @@ export default function Footer({ currentSection = "home" }: FooterProps) {
                 />
               </div>
               <div className="mb-6">
-                <p className="text-primary-foreground/90 font-medium mb-2">
+                <p className="text-primary-foreground/90 font-medium mb-2 ">
                   Your Bridge to Financial Solutions.
                 </p>
                 <p className="text-primary-foreground/70">
@@ -151,7 +151,7 @@ export default function Footer({ currentSection = "home" }: FooterProps) {
 
             {/* Services Column */}
             <div className="mt-10">
-              <h3 className="text-primary-foreground text-2xl mb-6 font-bebas-neue">
+              <h3 className="text-[var(--secondary-brand)] text-2xl mb-6 font-bebas-neue">
                 Services
               </h3>
               <ul className="space-y-3">
@@ -192,7 +192,7 @@ export default function Footer({ currentSection = "home" }: FooterProps) {
 
             {/* Hours Column */}
             <div className="mt-10">
-              <h3 className="text-primary-foreground text-2xl mb-6 font-bebas-neue">
+              <h3 className="text-[var(--secondary-brand)] text-2xl mb-6 font-bebas-neue">
                 Hours
               </h3>
               <div className="space-y-3">
@@ -209,7 +209,7 @@ export default function Footer({ currentSection = "home" }: FooterProps) {
 
             {/* Contacts Column */}
             <div className="mt-10">
-              <h3 className="text-primary-foreground text-2xl mb-6 font-bebas-neue">
+              <h3 className="text-[var(--secondary-brand)] text-2xl mb-6 font-bebas-neue">
                 Contact Us
               </h3>
               <div className="space-y-3">

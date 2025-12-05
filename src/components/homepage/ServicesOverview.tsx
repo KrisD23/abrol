@@ -90,7 +90,7 @@ export default function ServicesOverview() {
 
         <div className="sm:h-14 overflow-hidden">
           <p className="wmud-content text-gray-300 max-w-2xl">
-            From foundational accounting to high level financial strategy and
+            From foundational accounting to <span style={{ color: "var(--secondary-brand)" }}>high level financial strategy</span> and
             curated professional connections, we offer comprehensive guidance
             built around your goals.
           </p>
@@ -124,7 +124,7 @@ export default function ServicesOverview() {
           <div
             key={idx}
             className="service-card col-span-8 sm:col-span-12 xl:col-span-3 lg:col-span-4 md:col-span-6 
-                       h-80 border-2 rounded-lg overflow-hidden relative cursor-pointer"
+                       h-80  border-3 rounded-lg overflow-hidden relative cursor-pointer hover:border-[var(--secondary-brand)]/40"
           >
             <Image
               src={card.img}
@@ -138,8 +138,13 @@ export default function ServicesOverview() {
             <div className="absolute inset-0 bg-black/50"></div>
 
             {/* HOVER ANIMATION OVERLAY */}
-            <div className="service-hover-overlay absolute inset-0 bg-black z-30"></div>
-
+            <div
+  className="service-hover-overlay absolute inset-0 z-30"
+  style={{
+    background: "#000",
+    boxShadow: "inset 0px -18px 56px rgba(0, 116, 255, 0.25)",
+  }}
+></div>
             {/* TEXT CONTENT */}
             <div className="absolute inset-0 flex flex-col justify-end p-4 z-40">
               <h2 className="text-white text-lg font-semibold">{card.title}</h2>
