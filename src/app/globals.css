@@ -103,8 +103,8 @@
 --background: radial-gradient(
   circle,
   #001229 0%,     /* darker blue → less intensity */
-  #000814 20%,    /* black appears earlier (20% more) */
-  #000000 85%     /* stronger black dominance */
+  #000814 45%,    /* black appears earlier (20% more) */
+  #000000 55%     /* stronger black dominance */
 );
 
   /* Black background */
