@@ -1,18 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 @import "tailwindcss";
-
-.connector-key {
-  border-width: 2px !important;
-  border-style: solid !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-.connector-key:hover {
-  border-color: var(--secondary-brand) !important;
-  background-color: rgba(0, 116, 255, 0.25) !important;
-  color: #fff !important;
-}
 /* Mobile Responsive Base Styles */
 @media (max-width: 768px) {
   html {

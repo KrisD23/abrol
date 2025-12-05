@@ -154,33 +154,35 @@ export default function ConnectorElement() {
         </div>
       </div>
 
-      {/* CHIP ROW */}
-      {/* <div className="w-full mt-16 sm:mt-20 flex justify-center">
-        <div className="chips-row flex flex-wrap justify-center gap-6 sm:gap-9 max-w-[1100px]">
-          {chips.map((item, i) => (
-            <div
-              key={i}
-              className="
-                connector-key
-                min-w-[160px]
-                h-14 px-6
-                bg-white/20
-                text-sm rounded-full
-                text-gray-200
-                border-2 border-white/10
-                flex items-center justify-center whitespace-nowrap
-                transition-all duration-300 ease-out
-                hover:bg-[var(--secondary-brand)]/25
-                hover:border-[var(--secondary-brand)]
-                hover:text-white
-                transform-gpu
-              "
-            >
-              <p className="m-0">{item}</p>
-            </div>
-          ))}
-        </div>
-      </div> */}
+<div className="w-full flex justify-center mt-16 sm:mt-20">
+  <div className="flex flex-nowrap gap-6 sm:gap-9 font-medium">
+    {[
+      "Legal",
+      "Finance",
+      "Operations",
+      "Wealth Management",
+      "Strategy",
+    ].map((item, i) => (
+      <div
+        key={i}
+        className="
+          connector-key
+          h-14 px-6 py-3
+          bg-gray-200/20 
+          text-sm rounded-full text-gray-200 
+          border-2 border-gray-400/40 
+          flex items-center justify-center text-center
+          whitespace-nowrap
+          transition-all duration-300
+          hover:bg-[var(--secondary-brand)]
+          hover:border-[var(--secondary-brand)]
+        "
+      >
+        {item}
+      </div>
+    ))}
+  </div>
+</div>
     </section>
   );
 }
