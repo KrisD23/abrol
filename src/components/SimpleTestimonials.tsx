@@ -492,11 +492,11 @@ const nextSlide = () => {
                     }}
                   >
                     <TestimonialCard
-                      author={testimonial.author}
+                      //  author={testimonial.author}
                       company={testimonial.company}
                       text={testimonial.text}
-                      avatar={testimonial.avatar}
-                      rating={4.8}
+                      //  avatar={testimonial.avatar}
+                      // rating={4.8}
                     />
                   </div>
                 );
